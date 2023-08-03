@@ -1,24 +1,26 @@
 import "./App.css";
-import useSWR from "swr";
+import BlogList from "./components/BlogList";
+import { SWRConfig } from "swr";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: BlogList,
+  },
+]);
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function App() {
-  const {
-    data: blogposts,
-    error,
-    isLoading,
-  } = useSWR("http://localhost:3001/rest/blogposts", fetcher);
-
-  if (error) return "An error has occurred.";
-  if (isLoading) return "Loading...";
-
   return (
-    <div className="App">
-      {blogposts.map((post) => (
-        <div>{post.title}</div>
-      ))}
-    </div>
+    <SWRConfig
+      value={{
+        fetcher,
+      }}
+    >
+      <RouterProvider router={router} />
+    </SWRConfig>
   );
 }
 
