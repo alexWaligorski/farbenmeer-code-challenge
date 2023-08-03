@@ -1,5 +1,6 @@
 import "./App.css";
 import BlogList from "./components/BlogList";
+import BlogPost from "./components/BlogPost";
 import { SWRConfig } from "swr";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -7,6 +8,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: BlogList,
+  },
+  {
+    path: ":postId",
+    Component: BlogPost,
   },
 ]);
 

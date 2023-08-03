@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { Link } from "react-router-dom";
 
 export default function BlogList() {
   const {
@@ -12,10 +13,12 @@ export default function BlogList() {
 
   return (
     <ul>
-      {blogposts.map(({ id, title, content }) => {
+      {blogposts.map(({ id, title }) => {
         return (
           <li key={id}>
-            <h3>{title}</h3>
+            <Link to={`/${id}`}>
+              <h3>{title}</h3>
+            </Link>
           </li>
         );
       })}
