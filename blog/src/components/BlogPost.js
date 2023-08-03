@@ -1,8 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
+import { useState } from "react";
 import useSWR from "swr";
 
 export default function BlogPost() {
   const { postId } = useParams();
+
+  const [isCopied, setIsCopied] = useState(false);
+
+  const { pathname: path } = useLocation();
 
   const {
     data: blogpost,
@@ -15,6 +20,21 @@ export default function BlogPost() {
 
   const { title, subtitle, author, created, content, image } = blogpost;
 
+  function handleCopyUrl() {
+    navigator.clipboard.writeText(`http://localhost:3000${path}`).then(
+      () => {
+        setIsCopied(true);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 1000);
+  }
+
   return (
     <main>
       <article>
@@ -23,6 +43,10 @@ export default function BlogPost() {
         <h3>{subtitle}</h3>
         <p>by: {author}</p>
         <p>{created}</p>
+        {isCopied && <div>Link copied!</div>}
+        <button onClick={handleCopyUrl} type="button">
+          Copy URL
+        </button>
         <p>{content}</p>
       </article>
     </main>
