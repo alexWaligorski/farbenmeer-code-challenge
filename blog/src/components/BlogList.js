@@ -12,11 +12,11 @@ export default function BlogList() {
   if (isLoading) return "Loading...";
 
   return (
-    <ul>
+    <ul className="blogposts-container">
       {blogposts.map(({ id, title }) => {
         return (
-          <li key={id}>
-            <Link to={`/${id}`}>
+          <li className="blogposts-item" key={id}>
+            <Link className="blogposts-link" to={`/${id}`}>
               <h3>{title}</h3>
             </Link>
           </li>
