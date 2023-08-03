@@ -4,20 +4,26 @@
   grid-auto-rows: 200px;
   gap: 4em;
   margin-top: 1em;
+  padding: 0 2em;
 }
 
-.blogposts-item {
+.blogposts-card {
   display: flex;
   flex-direction: column;
   padding: 1em;
   transition: transform 0.2s;
   background-color: #5fd2ff;
   text-decoration: none;
-
-  list-style: none;
+  color: black;
 }
 
-.blogposts-link {
-  text-decoration: none;
-  color: black;
+.blogposts-card:hover {
+  transform: scale(1.1);
+}
+
+.blogposts-card__heading {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  border-bottom: 1px solid black;
 }

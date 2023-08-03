@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { Link } from "react-router-dom";
+import BlogPostCard from "./BlogPostCard";
 
 export default function BlogList() {
   const {
@@ -12,16 +12,10 @@ export default function BlogList() {
   if (isLoading) return "Loading...";
 
   return (
-    <ul className="blogposts-container">
+    <section className="blogposts-container">
       {blogposts.map(({ id, title }) => {
-        return (
-          <li className="blogposts-item" key={id}>
-            <Link className="blogposts-link" to={`/${id}`}>
-              <h3>{title}</h3>
-            </Link>
-          </li>
-        );
+        return <BlogPostCard id={id} title={title} />;
       })}
-    </ul>
+    </section>
   );
 }
