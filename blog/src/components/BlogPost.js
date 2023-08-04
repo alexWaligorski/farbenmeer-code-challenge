@@ -37,16 +37,26 @@ export default function BlogPost() {
 
   return (
     <main>
-      <article>
-        <img src={image} alt="cute cat doing stuff related to post content" />
+      <article className="blogpost">
+        <div className="blogpost__image-container">
+          <img src={image} alt="cute cat doing stuff related to post content" />
+        </div>
         <h2>{title}</h2>
-        <h3>{subtitle}</h3>
+        <h3 className="blogpost__subtitle">{subtitle}</h3>
         <p>by: {author}</p>
-        <p>{created}</p>
-        {isCopied && <div>Link copied!</div>}
-        <button onClick={handleCopyUrl} type="button">
-          Copy URL
-        </button>
+        <p>posted: {created.slice(0, 10)}</p>
+        <div className="copy-url-container">
+          {isCopied && (
+            <div className="copy-url-notification">Link copied!</div>
+          )}
+          <button
+            className="copy-url-button"
+            onClick={handleCopyUrl}
+            type="button"
+          >
+            Copy URL
+          </button>
+        </div>
         <p>{content}</p>
       </article>
     </main>
