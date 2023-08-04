@@ -1,5 +1,5 @@
 import "./App.css";
-import BlogPost from "./components/BlogPost";
+import BlogPost from "./pages/BlogPost";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import { SWRConfig } from "swr";
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-function App() {
+export default function App() {
   return (
     <SWRConfig
       value={{
@@ -34,5 +34,3 @@ function App() {
     </SWRConfig>
   );
 }
-
-export default App;

@@ -1,5 +1,6 @@
 import { useParams, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { DATA_API_URL, APP_URL } from "../config";
 import useSWR from "swr";
 
 export default function BlogPost() {
@@ -13,7 +14,7 @@ export default function BlogPost() {
     data: blogpost,
     error,
     isLoading,
-  } = useSWR(`http://localhost:3001/rest/blogpost/${postId}`);
+  } = useSWR(`${DATA_API_URL}/blogpost/${postId}`);
 
   if (error) return "An error has occurred.";
   if (isLoading) return "Loading...";
@@ -21,12 +22,12 @@ export default function BlogPost() {
   const { title, subtitle, author, created, content, image } = blogpost;
 
   function handleCopyUrl() {
-    navigator.clipboard.writeText(`http://localhost:3000${path}`).then(
+    navigator.clipboard.writeText(`${APP_URL}${path}`).then(
       () => {
         setIsCopied(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
 

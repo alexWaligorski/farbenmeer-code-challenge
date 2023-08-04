@@ -25,9 +25,11 @@ header {
   padding-top: 2em;
   align-items: baseline;
 }
+header nav {
+  margin-left: auto;
+}
 
 .header__homelink {
-  margin-left: auto;
   color: var(--secondaryColor);
 }
 
