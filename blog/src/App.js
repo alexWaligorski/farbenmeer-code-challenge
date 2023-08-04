@@ -1,19 +1,23 @@
 import "./App.css";
 import BlogPost from "./components/BlogPost";
-import Header from "./components/Header";
-import Footer from "./Footer";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import { SWRConfig } from "swr";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    Component: Home,
-  },
-  {
-    path: ":postId",
-    Component: BlogPost,
+    Component: Layout,
+    children: [
+      {
+        path: "/",
+        Component: Home,
+      },
+      {
+        path: ":postId",
+        Component: BlogPost,
+      },
+    ],
   },
 ]);
 
@@ -26,8 +30,6 @@ function App() {
         fetcher,
       }}
     >
-      <Header />
-      <Footer />
       <RouterProvider router={router} />
     </SWRConfig>
   );
