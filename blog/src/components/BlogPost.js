@@ -41,11 +41,11 @@ export default function BlogPost() {
         <div className="blogpost__image-container">
           <img src={image} alt="cute cat doing stuff related to post content" />
         </div>
-        <h2>{title}</h2>
-        <h3 className="blogpost__subtitle">{subtitle}</h3>
+        <h1>{title}</h1>
+        <h2 className="blogpost__subtitle">{subtitle}</h2>
         <p>by: {author}</p>
         <p>posted: {created.slice(0, 10)}</p>
-        <div className="copy-url-container">
+        <div role="alert" className="copy-url-container">
           {isCopied && (
             <div className="copy-url-notification">Link copied!</div>
           )}
